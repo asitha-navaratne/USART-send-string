@@ -15,7 +15,7 @@ int main(void){
 	
 	while(1){
 		USART_SEND_STRING(message);
-		USART_SEND(32);									///< Send a space character.
+		USART_SEND(32);							///< Send a space character.
 	}
 }
 
@@ -24,9 +24,9 @@ int main(void){
  */
 
 void USART_INIT(void){
-	UCSRB |= (1<<TXEN);								///< Enable transmission over USART.
-	UCSRC |= (1<<URSEL)|(1<<UCSZ1)|(1<<UCSZ0);		///< Select register UCSRC and set transmission character size to 8 bits.
-	UBRRL = UBRR;										///< Set UBRR value for specified baudrate at specified frequency.
+	UCSRB |= (1<<TXEN);							///< Enable transmission over USART.
+	UCSRC |= (1<<URSEL)|(1<<UCSZ1)|(1<<UCSZ0);				///< Select register UCSRC and set transmission character size to 8 bits.
+	UBRRL = UBRR;								///< Set UBRR value for specified baudrate at specified frequency.
 }
 
 /*!
@@ -36,7 +36,7 @@ void USART_INIT(void){
 
 void USART_SEND(unsigned char character){
 	while(!(UCSRA & (1<<UDRE)));						///< Wait until data register is empty.
-	UDR = character;									///< Load character to be transmitted to data register.
+	UDR = character;							///< Load character to be transmitted to data register.
 	while(!(UCSRA & (1<<TXC)));						///< Wait until transmission is complete.
 }
 
